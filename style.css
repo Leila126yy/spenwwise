@@ -1,0 +1,97 @@
+/* 3. THEME - CSS Custom Properties */
+:root{
+  --brand:#0f766e;
+  --accent:#ec4899;
+  --surface:#f1f5f9;
+  --card-bg:#ffffff;
+  --text-primary:#1e293b;
+  --text-secondary:#64748b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--surface);color:var(--text-primary)}
+
+/* 2. CSS GRID for overall layout */
+.layout{
+  display:grid;
+  grid-template-columns:230px 1fr;
+  min-height:100vh;
+}
+
+/* SIDEBAR - Flexbox */
+.sidebar{
+  background:var(--brand);
+  color:white;
+  padding:24px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.sidebar nav{display:flex;flex-direction:column;gap:8px}
+.sidebar nav a{color:white;text-decoration:none;padding:10px 12px;border-radius:8px;display:flex;gap:8px}
+.sidebar nav a.active,.sidebar nav a:hover{background:rgba(255,255,255,.2)}
+.sidebar-footer{margin-top:auto;color:#e0f2f1;font-size:13px}
+
+/* MAIN */
+.main{padding:24px;display:flex;flex-direction:column;gap:20px}
+
+/* HEADER - Flexbox */
+.header{
+  background:var(--card-bg);
+  padding:20px;border-radius:12px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.header p{color:var(--text-secondary);margin-top:4px}
+.header-actions{display:flex;gap:10px}
+.header-actions input{padding:10px;border:1px solid #ddd;border-radius:8px}
+.header-actions button{background:var(--accent);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
+
+/* SUMMARY - Flexbox */
+.summary{display:flex;gap:16px;flex-wrap:wrap}
+.summary div{background:var(--card-bg);padding:16px;border-radius:12px;flex:1;display:flex;flex-direction:column;gap:4px}
+.summary span{color:var(--text-secondary);font-size:13px}
+
+/* CARDS - CSS GRID */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+/* 5. MICRO-INTERACTION - 250ms max */
+.card{
+  background:var(--card-bg);
+  padding:20px;border-radius:12px;
+  display:flex;flex-direction:column;gap:6px;
+  cursor:pointer;
+  transition:transform 200ms ease, box-shadow 200ms ease;
+}
+.card span{font-size:28px}
+.card p{font-size:20px;font-weight:bold}
+.card small{color:var(--text-secondary)}
+.card:hover,.card:focus{
+  transform:translateY(-4px);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+  outline:2px solid var(--accent);
+}
+footer{text-align:center;color:var(--text-secondary);font-size:13px}
+
+/* 4. RESPONSIVE - Below 768px single column */
+@media (max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{flex-direction:row;flex-wrap:wrap;align-items:center}
+  .sidebar nav{flex-direction:row;flex-wrap:wrap}
+  .cards{grid-template-columns:1fr}
+  .header{flex-direction:column;align-items:flex-start}
+  .summary{flex-direction:column}
+}
+
+/* STRETCH: DARK THEME */
+@media (prefers-color-scheme:dark){
+  :root{
+    --surface:#0f172a;
+    --card-bg:#1e293b;
+    --text-primary:#f1f5f9;
+    --text-secondary:#94a3b8;
+    --brand:#14b8a6;
+  }
+}
